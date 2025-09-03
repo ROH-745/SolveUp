@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Timer from "./Timer";
 
 function NavBar() {
   return (
@@ -33,7 +34,7 @@ function NavBar() {
       </h3>
 
       
-      <p style={{ margin: 0 }}>⏳ Timer will go here</p>
+      <p style={{ margin: 0 }}><Timer/></p>
     </div>
   );
 }
