@@ -1,26 +1,14 @@
+
 import { Link } from "react-router-dom";
+import "../Style/NavBarSimple.css";
 
 function NavBarSimple() {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "10px 20px",
-        background: "#00d5ffff",
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        height: "60px",
-        zIndex: 1000
-      }}
-    >
+    <div className="navbar-simple">
       <Link to="/">
-        <button style={{ backgroundColor: "blue" }}>Back</button>
+        <button className="navbar-button">Back</button>
       </Link>
-      <h3 style={{ margin: 0 }}>SolveUp</h3>
+      <h3 className="navbar-title">SolveUp</h3>
     </div>
   );
 }

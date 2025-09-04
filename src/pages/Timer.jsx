@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect } from "react";
+import "../Style/Timer.css";
 
 function Timer() {
   const [timeLeft, setTimeLeft] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [pauseLabel, setPauseLabel] = useState("Pause");
-
   const [sessionDuration, setSessionDuration] = useState(0);
   const [totalTimeSpent, setTotalTimeSpent] = useState(0);
 
@@ -17,6 +17,7 @@ function Timer() {
       setIsRunning(false);
       setPauseLabel("Pause");
       setTotalTimeSpent((prev) => prev + sessionDuration);
+
       const wantContinue = window.confirm("⏰ Time’s up! Do you want to continue?");
       if (wantContinue) handleStart(true);
     }
@@ -30,6 +31,7 @@ function Timer() {
     const hours = parseInt(h, 10) || 0;
     const minutes = parseInt(m, 10) || 0;
     const totalSeconds = hours * 3600 + minutes * 60;
+
     if (totalSeconds > 0) {
       setTimeLeft(totalSeconds);
       setSessionDuration(totalSeconds);
@@ -49,64 +51,50 @@ function Timer() {
     }
   };
 
-  // const handleFinish = () => {
-  //   const elapsedThisSession = sessionDuration - timeLeft;
-  //   const finalTotal = totalTimeSpent + elapsedThisSession;
-  //   setIsRunning(false);
-  //   setPauseLabel("Pause");
-  //   alert(`🎉 You finished!\nTotal time taken: ${formatTime(finalTotal)}`);
-    
-  //   setTimeLeft(0);
-  //   setSessionDuration(0);
-  //   setTotalTimeSpent(0);
-  // };
-
   const handleFinish = () => {
-  const elapsedThisSession = sessionDuration - timeLeft;
-  const finalTotal = totalTimeSpent + elapsedThisSession;
-  setIsRunning(false);
-  setPauseLabel("Pause");
+    const elapsedThisSession = sessionDuration - timeLeft;
+    const finalTotal = totalTimeSpent + elapsedThisSession;
+    setIsRunning(false);
+    setPauseLabel("Pause");
 
-  const hours = Math.floor(finalTotal / 3600);
-  const minutes = Math.floor((finalTotal % 3600) / 60);
-  const seconds = finalTotal % 60;
+    const hours = Math.floor(finalTotal / 3600);
+    const minutes = Math.floor((finalTotal % 3600) / 60);
+    const seconds = finalTotal % 60;
 
-  alert(
-    `🎉 You finished!\nTotal time taken: ${hours} hr ${minutes} min ${seconds} sec`
-  );
+    alert(`🎉 You finished!\nTotal time taken: ${hours} hr ${minutes} min ${seconds} sec`);
 
-  setTimeLeft(0);
-  setSessionDuration(0);
-  setTotalTimeSpent(0);
-};
-
+    setTimeLeft(0);
+    setSessionDuration(0);
+    setTotalTimeSpent(0);
+  };
 
   const formatTime = (seconds) => {
     const h = Math.floor(seconds / 3600);
     const m = Math.floor((seconds % 3600) / 60);
     const s = seconds % 60;
-    return `${h.toString().padStart(2, "0")}:${m
+    return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s
       .toString()
-      .padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+      .padStart(2, "0")}`;
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "#00d5ff",
-        width: "350px",
-        display: "flex",
-        justifyContent: "space-between",
-        gap: "5px",
-        padding: "5px",
-      }}
-    >
-      <span>{formatTime(timeLeft)}</span>
-      <button onClick={() => handleStart(false)}>START</button>
-      <button onClick={handlePauseResume} disabled={timeLeft === 0}>
+    <div className="timer-container">
+      <span className="timer-display">{formatTime(timeLeft)}</span>
+      <button className="timer-button start-btn" onClick={() => handleStart(false)}>
+        START
+      </button>
+      <button
+        className="timer-button pause-btn"
+        onClick={handlePauseResume}
+        disabled={timeLeft === 0}
+      >
         {pauseLabel}
       </button>
-      <button onClick={handleFinish} disabled={timeLeft === 0 && totalTimeSpent === 0}>
+      <button
+        className="timer-button finish-btn"
+        onClick={handleFinish}
+        disabled={timeLeft === 0 && totalTimeSpent === 0}
+      >
         FINISH
       </button>
     </div>

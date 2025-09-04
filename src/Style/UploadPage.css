@@ -1,0 +1,22 @@
+.upload-container {
+  text-align: center;
+  margin-top: 250px; /* pushes content below navbar */
+}
+
+.upload-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.upload-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  background-color: #0056b3;
+}

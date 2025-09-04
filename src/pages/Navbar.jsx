@@ -1,40 +1,28 @@
+
 import { Link } from "react-router-dom";
 import Timer from "./Timer";
+import "../Style/Navbar.css";
 
 function NavBar() {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "10px 20px",
-        background: "#00d5ffff",
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        height: "60px",
-        zIndex: 1000
-      }}
-    >
-      
-      <div style={{ display: "flex", gap: "10px" }}>
+    <div className="navbar">
+      {/* Left: Back + Home */}
+      <div className="navbar-left">
         <Link to="/upload">
-          <button style={{borderRadius:"3px",border:"1px solid black"}}>Back</button>
+          <button className="navbar-btn">Back</button>
         </Link>
         <Link to="/">
-          <button style={{borderRadius:"3px",border:"1px solid black"}}>Home</button>
+          <button className="navbar-btn">Home</button>
         </Link>
       </div>
 
-    
-      <h3 style={{ margin: 0, position: "absolute", left: "50%", transform: "translateX(-50%)" }}>
-        SolveUp
-      </h3>
+      {/* Center: Title */}
+      <h3 className="navbar-title">SolveUp</h3>
 
-      
-      <p style={{ margin: 0 }}><Timer/></p>
+      {/* Right: Timer */}
+      <div>
+        <Timer />
+      </div>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import NavBar from "../pages/Navbar";
 import { useState, useEffect } from "react";
+import NavBar from "../pages/Navbar";
+import "../Style/SolvePage.css";
 
 function SolvePage() {
   const [pdfUrl, setPdfUrl] = useState();
@@ -11,7 +12,7 @@ function SolvePage() {
     const url = localStorage.getItem("pdfFileURL");
     const name = localStorage.getItem("questionPaper");
     if (!url) {
-      navigate("/upload"); 
+      navigate("/upload");
       return;
     }
     setPdfUrl(url);
@@ -21,12 +22,12 @@ function SolvePage() {
   return (
     <div>
       <NavBar />
-      <div style={{ marginTop: "60px", height: "calc(100vh - 60px)" }}>
+      <div className="solve-container">
         {pdfUrl ? (
           <iframe
             src={pdfUrl}
-            title="Question Paper"
-            style={{ width: "100%", height: "100%", border: "none" }}
+            title={paperName || "Question Paper"}
+            className="solve-frame"
           />
         ) : (
           <p>Loading paper…</p>
